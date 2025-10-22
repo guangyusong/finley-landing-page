@@ -53,6 +53,7 @@ function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -62,28 +63,80 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <div className="bg-gradient-to-b from-amber-50 via-orange-50/30 to-white text-slate-900 overflow-x-hidden">
+    <div className="bg-gradient-to-b from-orange-50/30 via-orange-50/10 to-white text-slate-900 overflow-x-hidden">
       {/* Subtle Background Pattern */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_1px_1px,rgb(0,0,0)_1px,transparent_0)] bg-[size:40px_40px]"></div>
+      <div className="fixed inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(circle_at_1px_1px,rgb(15,23,42)_1px,transparent_0)] bg-[size:40px_40px]"></div>
 
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 px-4 md:px-8 py-3 md:py-4 backdrop-blur-xl bg-white/80 border border-slate-200/60 shadow-lg shadow-slate-900/5 rounded-full flex items-center gap-3 md:gap-8"
+        className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 px-4 md:px-8 py-3 md:py-4 backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg shadow-slate-900/5 rounded-full flex items-center justify-between gap-3 md:gap-8 w-[calc(100%-2rem)] md:w-auto"
       >
-        <div className="text-lg md:text-xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-          Finley
+        <div className="text-lg md:text-xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
+          Garrison
         </div>
         <div className="hidden md:flex gap-8 text-sm text-slate-600 font-medium">
           <a href="#how-it-works" className="hover:text-slate-900 transition-colors">How It Works</a>
           <a href="#why-us" className="hover:text-slate-900 transition-colors">Why Us</a>
           <a href="#stories" className="hover:text-slate-900 transition-colors">Stories</a>
         </div>
-        <button className="ml-auto px-4 md:px-6 py-2 md:py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-orange-500/25 hover:scale-105 transition-all">
+        <button className="hidden md:block px-4 md:px-6 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-orange-600/25 hover:scale-105 transition-all">
           Get Started
         </button>
+
+        {/* Mobile hamburger button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-1 text-slate-700"
+          aria-label="Toggle menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
       </motion.nav>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-sm md:hidden backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg rounded-3xl p-6"
+        >
+          <div className="flex flex-col gap-4">
+            <a
+              href="#how-it-works"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-700 hover:text-orange-600 font-medium py-2 transition-colors"
+            >
+              How It Works
+            </a>
+            <a
+              href="#why-us"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-700 hover:text-orange-600 font-medium py-2 transition-colors"
+            >
+              Why Us
+            </a>
+            <a
+              href="#stories"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-700 hover:text-orange-600 font-medium py-2 transition-colors"
+            >
+              Stories
+            </a>
+            <button className="mt-2 w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-orange-600/25 transition-all">
+              Get Started
+            </button>
+          </div>
+        </motion.div>
+      )}
 
       {/* Hero Section */}
       <section ref={containerRef} className="relative min-h-screen flex items-center px-6 pt-32 pb-20">
@@ -95,18 +148,18 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="inline-flex items-center gap-2 bg-amber-100 border border-amber-200 px-4 py-2 rounded-full text-sm font-medium text-amber-800 mb-6">
+              <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-2 rounded-full text-sm font-medium text-orange-900 mb-6">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-600"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
                 </span>
                 Average approval in 3-5 days
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
                 Your dream home,{' '}
-                <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
-                  faster
+                <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  simplified
                 </span>
               </h1>
 
@@ -115,11 +168,11 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold text-lg overflow-hidden hover:shadow-xl hover:shadow-orange-500/25 hover:scale-105 transition-all">
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-lg overflow-hidden hover:shadow-xl hover:shadow-orange-600/25 hover:scale-105 transition-all">
                   Start Your Application
                   <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
                 </button>
-                <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-full font-semibold text-lg hover:border-slate-300 hover:shadow-lg transition-all">
+                <button className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all">
                   Calculate Payment
                 </button>
               </div>
@@ -157,17 +210,17 @@ export default function Home() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/10">
                 {/* Placeholder for hero image */}
-                <div className="aspect-[5/4] bg-gradient-to-br from-amber-100 via-orange-100 to-amber-50 relative">
+                <div className="aspect-[5/4] bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 relative">
                   {/* Decorative home illustration */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-7xl mb-3">🏡</div>
-                      <div className="text-xl font-semibold text-slate-700">Your Dream Home</div>
-                      <div className="text-slate-500 mt-1 text-sm">Approved in days</div>
+                      <div className="text-xl font-semibold text-slate-800">Your Dream Home</div>
+                      <div className="text-slate-600 mt-1 text-sm">Approved in days</div>
                     </div>
                   </div>
                   {/* Decorative gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-orange-600/10 to-transparent"></div>
                 </div>
 
                 {/* Floating stat card */}
@@ -180,7 +233,7 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-sm text-slate-500 mb-1">Approval Time</div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                      <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
                         3-5 Days
                       </div>
                     </div>
@@ -199,21 +252,21 @@ export default function Home() {
           <AnimatedSection>
             <div className="grid md:grid-cols-3 gap-12 text-center">
               <div>
-                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-amber-600 to-orange-600 bg-clip-text text-transparent mb-3">
+                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
                   <Counter value={3} />
                 </div>
                 <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Days Average</div>
                 <div className="text-sm sm:text-base text-slate-500">From application to approval</div>
               </div>
               <div>
-                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-amber-600 to-orange-600 bg-clip-text text-transparent mb-3">
+                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
                   $<Counter value={500} />M+
                 </div>
                 <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Mortgages Funded</div>
                 <div className="text-sm sm:text-base text-slate-500">Helping families achieve their dreams</div>
               </div>
               <div>
-                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-amber-600 to-orange-600 bg-clip-text text-transparent mb-3">
+                <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
                   4.<Counter value={9} />★
                 </div>
                 <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Customer Rating</div>
@@ -225,7 +278,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="relative py-24 px-6 bg-gradient-to-b from-white to-amber-50/30">
+      <section id="how-it-works" className="relative py-24 px-6 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-20">
@@ -233,7 +286,7 @@ export default function Home() {
                 Simple, transparent process
               </h2>
               <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
-                We've streamlined the mortgage process to be fast and straightforward, without sacrificing quality or care.
+                We&apos;ve streamlined the mortgage process to be fast and straightforward, without sacrificing quality or care.
               </p>
             </div>
           </AnimatedSection>
@@ -243,7 +296,7 @@ export default function Home() {
             <AnimatedSection delay={0.1}>
               <div className="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                  <div className="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  <div className="inline-block bg-orange-100 text-orange-900 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     Step 1
                   </div>
                   <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Quick Application</h3>
@@ -271,7 +324,7 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <div className="relative h-96 bg-gradient-to-br from-white to-amber-50 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
+                <div className="relative h-96 bg-gradient-to-br from-white to-slate-100 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center text-9xl">📝</div>
                 </div>
               </div>
@@ -280,11 +333,11 @@ export default function Home() {
             {/* Step 2 */}
             <AnimatedSection delay={0.2}>
               <div className="grid md:grid-cols-2 gap-16 items-center">
-                <div className="order-2 md:order-1 relative h-96 bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl border-2 border-amber-200 shadow-xl overflow-hidden">
+                <div className="order-2 md:order-1 relative h-96 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl border-2 border-orange-200 shadow-xl overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center text-9xl">🔍</div>
                 </div>
                 <div className="order-1 md:order-2">
-                  <div className="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  <div className="inline-block bg-orange-100 text-orange-900 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     Step 2
                   </div>
                   <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Smart Analysis</h3>
@@ -319,7 +372,7 @@ export default function Home() {
             <AnimatedSection delay={0.3}>
               <div className="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                  <div className="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  <div className="inline-block bg-orange-100 text-orange-900 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     Step 3
                   </div>
                   <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Get Your Keys</h3>
@@ -365,7 +418,7 @@ export default function Home() {
                 Why families choose us
               </h2>
               <p className="text-lg sm:text-xl text-slate-600">
-                We're faster without cutting corners
+                We&apos;re faster without cutting corners
               </p>
             </div>
           </AnimatedSection>
@@ -392,22 +445,22 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Finley */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border-2 border-amber-300 shadow-lg">
+              {/* Garrison */}
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-300 shadow-lg">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <div className="text-sm text-amber-700 mb-1 font-semibold">Finley</div>
+                    <div className="text-sm text-orange-900 mb-1 font-semibold">Garrison</div>
                     <div className="text-3xl font-bold text-slate-900">3-5 Days</div>
                   </div>
                   <div className="text-5xl">⚡</div>
                 </div>
-                <div className="relative h-3 bg-amber-200 rounded-full overflow-hidden">
+                <div className="relative h-3 bg-orange-200 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: "0%" }}
                     whileInView={{ width: "17%" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+                    className="h-full bg-gradient-to-r from-orange-600 to-orange-700 rounded-full"
                   ></motion.div>
                 </div>
               </div>
@@ -415,8 +468,8 @@ export default function Home() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.4}>
-            <div className="mt-16 text-center bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl p-8 sm:p-12 border-2 border-amber-200">
-              <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-3">
+            <div className="mt-16 text-center bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 sm:p-12 border-2 border-orange-200">
+              <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
                 8× Faster
               </div>
               <p className="text-slate-600 text-base sm:text-lg">on average, without sacrificing quality or care</p>
@@ -426,7 +479,7 @@ export default function Home() {
       </section>
 
       {/* Customer Stories */}
-      <section id="stories" className="relative py-24 px-6 bg-gradient-to-b from-white to-amber-50/30">
+      <section id="stories" className="relative py-24 px-6 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -444,16 +497,16 @@ export default function Home() {
               <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-slate-200">
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
                 <p className="text-lg sm:text-xl text-slate-700 mb-8 leading-relaxed font-medium">
-                  "Applied on Monday, had my approval by Thursday. The team was incredibly helpful and kept me updated every step of the way. Couldn't be happier with our new home!"
+                  &quot;Applied on Monday, had my approval by Thursday. The team was incredibly helpful and kept me updated every step of the way. Couldn&apos;t be happier with our new home!&quot;
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center text-white font-bold text-xl">
                     SM
                   </div>
                   <div>
@@ -466,16 +519,16 @@ export default function Home() {
               <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-slate-200">
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
                 <p className="text-lg sm:text-xl text-slate-700 mb-8 leading-relaxed font-medium">
-                  "After struggling with two other lenders, Finley made it so simple. Clear communication, competitive rates, and incredibly fast. This is how mortgages should work."
+                  &quot;After struggling with two other lenders, Garrison made it so simple. Clear communication, competitive rates, and incredibly fast. This is how mortgages should work.&quot;
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center text-white font-bold text-xl">
                     JC
                   </div>
                   <div>
@@ -490,7 +543,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-6 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600">
+      <section className="relative py-32 px-6 bg-gradient-to-br from-orange-600 via-orange-700 to-orange-800">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight">
@@ -500,7 +553,7 @@ export default function Home() {
               Join thousands of families who chose the faster, simpler path to homeownership.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-600 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all">
+              <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-700 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all">
                 Start Your Application
               </button>
               <button className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all">
@@ -519,8 +572,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent mb-4">
-                Finley
+              <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-4">
+                Garrison
               </div>
               <p className="text-sm leading-relaxed">
                 Making homeownership accessible through fast, transparent, and caring mortgage solutions.
@@ -554,7 +607,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-8 text-center text-sm">
-            <p>© 2025 Finley. NMLS #123456. All rights reserved.</p>
+            <p>© 2025 Garrison. NMLS #123456. All rights reserved.</p>
             <p className="mt-2 text-slate-500">Licensed to do business in all 50 states.</p>
           </div>
         </div>
