@@ -217,16 +217,15 @@ export default function Home() {
               className="relative"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/10">
-                {/* Placeholder for hero image */}
-                <div className="aspect-[5/4] bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 relative">
-                  {/* Decorative home illustration */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-7xl mb-3">🏡</div>
-                      <div className="text-xl font-semibold text-slate-800">Your Dream Home</div>
-                      <div className="text-slate-600 mt-1 text-sm">Approved in days</div>
-                    </div>
-                  </div>
+                {/* Hero image */}
+                <div className="aspect-[5/4] relative">
+                  <Image
+                    src="/hero-home.png"
+                    alt="Happy family with their new home"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-orange-600/10 to-transparent"></div>
                 </div>
@@ -332,8 +331,13 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <div className="relative h-96 bg-gradient-to-br from-white to-slate-100 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center text-9xl">📝</div>
+                <div className="relative h-96 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
+                  <Image
+                    src="/step-application.png"
+                    alt="Online mortgage application"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </AnimatedSection>
@@ -341,8 +345,13 @@ export default function Home() {
             {/* Step 2 */}
             <AnimatedSection delay={0.2}>
               <div className="grid md:grid-cols-2 gap-16 items-center">
-                <div className="order-2 md:order-1 relative h-96 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl border-2 border-orange-200 shadow-xl overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center text-9xl">🔍</div>
+                <div className="order-2 md:order-1 relative h-96 rounded-3xl border-2 border-orange-200 shadow-xl overflow-hidden">
+                  <Image
+                    src="/step-analysis.png"
+                    alt="Smart mortgage analysis"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="order-1 md:order-2">
                   <div className="inline-block bg-orange-100 text-orange-900 px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -408,8 +417,13 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <div className="relative h-96 bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl border-2 border-green-200 shadow-xl overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center text-9xl">🔑</div>
+                <div className="relative h-96 rounded-3xl border-2 border-green-200 shadow-xl overflow-hidden">
+                  <Image
+                    src="/step-keys.png"
+                    alt="Receiving house keys"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </AnimatedSection>
