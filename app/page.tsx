@@ -89,9 +89,9 @@ export default function Home() {
           <a href="#why-us" className="hover:text-slate-900 transition-colors">Why Us</a>
           <a href="#stories" className="hover:text-slate-900 transition-colors">Stories</a>
         </div>
-        <button className="hidden md:block px-4 md:px-6 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-orange-600/25 hover:scale-105 transition-all">
+        <a href="#contact" className="hidden md:block px-4 md:px-6 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-orange-600/25 hover:scale-105 transition-all">
           Get Started
-        </button>
+        </a>
 
         {/* Mobile hamburger button */}
         <button
@@ -139,9 +139,9 @@ export default function Home() {
             >
               Stories
             </a>
-            <button className="mt-2 w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-orange-600/25 transition-all">
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="mt-2 w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-orange-600/25 transition-all text-center">
               Get Started
-            </button>
+            </a>
           </div>
         </motion.div>
       )}
@@ -176,13 +176,13 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-lg overflow-hidden hover:shadow-xl hover:shadow-orange-600/25 hover:scale-105 transition-all">
+                <a href="#contact" className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold text-lg overflow-hidden hover:shadow-xl hover:shadow-orange-600/25 hover:scale-105 transition-all text-center">
                   Start Your Application
                   <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-                <button className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all">
+                </a>
+                <a href="#contact" className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all text-center">
                   Calculate Payment
-                </button>
+                </a>
               </div>
 
               {/* Trust Badges */}
@@ -220,7 +220,7 @@ export default function Home() {
                 {/* Hero image */}
                 <div className="aspect-[5/4] relative">
                   <Image
-                    src="/hero-home.png"
+                    src="/hero-home.webp"
                     alt="Happy family with their new home"
                     fill
                     className="object-cover"
@@ -333,7 +333,7 @@ export default function Home() {
                 </div>
                 <div className="relative h-96 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
                   <Image
-                    src="/step-application.png"
+                    src="/step-application.webp"
                     alt="Online mortgage application"
                     fill
                     className="object-cover"
@@ -347,7 +347,7 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-16 items-center">
                 <div className="order-2 md:order-1 relative h-96 rounded-3xl border-2 border-orange-200 shadow-xl overflow-hidden">
                   <Image
-                    src="/step-analysis.png"
+                    src="/step-analysis.webp"
                     alt="Smart mortgage analysis"
                     fill
                     className="object-cover"
@@ -419,7 +419,7 @@ export default function Home() {
                 </div>
                 <div className="relative h-96 rounded-3xl border-2 border-green-200 shadow-xl overflow-hidden">
                   <Image
-                    src="/step-keys.png"
+                    src="/step-keys.webp"
                     alt="Receiving house keys"
                     fill
                     className="object-cover"
@@ -575,15 +575,134 @@ export default function Home() {
               Join thousands of families who chose the faster, simpler path to homeownership.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-700 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all">
+              <a href="#contact" className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-700 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all inline-block">
                 Start Your Application
-              </button>
-              <button className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all">
+              </a>
+              <a href="mailto:hello@garrison.mortgage" className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all inline-block">
                 Talk to an Expert
-              </button>
+              </a>
             </div>
             <div className="mt-8 text-white/80 text-sm">
               Free consultation • No commitment • Get answers in 24 hours
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative py-24 px-6 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-slate-900">
+                Get Started Today
+              </h2>
+              <p className="text-lg text-slate-600">
+                Fill out the form below and we&apos;ll be in touch within 24 hours
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="bg-slate-50 rounded-3xl p-8 sm:p-12 border-2 border-slate-200">
+              <form className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-semibold text-slate-700 mb-2">
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-semibold text-slate-700 mb-2">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="loanAmount" className="block text-sm font-semibold text-slate-700 mb-2">
+                    Estimated Loan Amount
+                  </label>
+                  <select
+                    id="loanAmount"
+                    name="loanAmount"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
+                    required
+                  >
+                    <option value="">Select amount...</option>
+                    <option value="under-200k">Under $200,000</option>
+                    <option value="200k-400k">$200,000 - $400,000</option>
+                    <option value="400k-600k">$400,000 - $600,000</option>
+                    <option value="600k-800k">$600,000 - $800,000</option>
+                    <option value="over-800k">Over $800,000</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-2">
+                    Additional Information (Optional)
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-bold text-lg hover:shadow-xl hover:shadow-orange-600/25 hover:scale-105 transition-all"
+                >
+                  Submit Application
+                </button>
+
+                <p className="text-sm text-slate-500 text-center">
+                  By submitting this form, you agree to our{' '}
+                  <a href="#" className="text-orange-600 hover:underline">Privacy Policy</a> and{' '}
+                  <a href="#" className="text-orange-600 hover:underline">Terms of Service</a>
+                </p>
+              </form>
             </div>
           </AnimatedSection>
         </div>
