@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
   const ref = useRef(null);
@@ -71,10 +72,17 @@ export default function Home() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 px-4 md:px-8 py-3 md:py-4 backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg shadow-slate-900/5 rounded-full flex items-center justify-between gap-3 md:gap-8 w-[calc(100%-2rem)] md:w-auto"
+        className="fixed top-0 md:top-6 left-0 md:left-1/2 md:-translate-x-1/2 right-0 md:right-auto z-50 px-4 md:px-8 py-4 md:py-4 backdrop-blur-xl bg-white/95 md:border border-slate-200/60 shadow-lg shadow-slate-900/5 md:rounded-full flex items-center justify-between gap-3 md:gap-8 w-full md:w-auto"
       >
-        <div className="text-lg md:text-xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
-          Garrison
+        <div className="relative h-6 md:h-7 w-auto">
+          <Image
+            src="/garrison-logo-dark.png"
+            alt="Garrison"
+            width={120}
+            height={28}
+            className="h-full w-auto"
+            priority
+          />
         </div>
         <div className="hidden md:flex gap-8 text-sm text-slate-600 font-medium">
           <a href="#how-it-works" className="hover:text-slate-900 transition-colors">How It Works</a>
@@ -88,7 +96,7 @@ export default function Home() {
         {/* Mobile hamburger button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-1 text-slate-700"
+          className="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
           aria-label="Toggle menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +115,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-sm md:hidden backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg rounded-3xl p-6"
+          className="fixed top-16 left-4 right-4 z-40 md:hidden backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg rounded-3xl p-6"
         >
           <div className="flex flex-col gap-4">
             <a
@@ -572,8 +580,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-4">
-                Garrison
+              <div className="relative h-8 w-auto mb-4">
+                <Image
+                  src="/garrison-logo-light.png"
+                  alt="Garrison"
+                  width={140}
+                  height={32}
+                  className="h-full w-auto"
+                />
               </div>
               <p className="text-sm leading-relaxed">
                 Making homeownership accessible through fast, transparent, and caring mortgage solutions.

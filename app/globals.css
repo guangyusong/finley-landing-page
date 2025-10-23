@@ -5,6 +5,17 @@
 
   --animate-gradient: gradient 8s ease infinite;
   --animate-shimmer: shimmer 3s ease-in-out infinite;
+
+  --color-orange-50: #fff5f0;
+  --color-orange-100: #ffe4d9;
+  --color-orange-200: #ffc9b3;
+  --color-orange-300: #ffa580;
+  --color-orange-400: #ff7a4d;
+  --color-orange-500: #fc5201;
+  --color-orange-600: #fc5201;
+  --color-orange-700: #d44501;
+  --color-orange-800: #a63701;
+  --color-orange-900: #7a2900;
 }
 
 @keyframes gradient {
