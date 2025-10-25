@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -62,6 +63,13 @@ export default function RootLayout({
           Skip to content
         </a>
         <main id="main">{children}</main>
+        {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ? (
+          <Script
+            id="hs-script-loader"
+            strategy="afterInteractive"
+            src={`https://js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.js`}
+          />
+        ) : null}
       </body>
     </html>
   );
