@@ -38,3 +38,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Configuration
 
 - Set `NEXT_PUBLIC_SITE_URL` to your canonical domain (e.g. `https://garrisonco.ca`) so Open Graph, sitemap, and robots.txt use the correct absolute URLs.
+
+## HubSpot lead capture
+
+The contact form posts to a Next.js API route (`app/api/contact/route.ts`) which forwards submissions to HubSpot's Forms Submission API. The HubSpot tracking script is loaded if `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` is set.
+
+Environment variables
+
+- `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` — loads HubSpot tracking script
+- `HUBSPOT_PORTAL_ID` — HubSpot portal ID (server-side)
+- `HUBSPOT_FORM_ID` — production form ID (GUID)
+- `HUBSPOT_FORM_ID_DEV` — dev/preview/local form ID (optional; if set it is used when not in production)
+- `HUBSPOT_ENV` — tag contacts with an environment label (e.g., `dev` or `prod`)
+
+Notes
+
+- HubSpot forms API submissions do not require auth tokens.
+- The API route includes hutk (if present), pageUri, pageName, ipAddress, and userAgent for better attribution, and maps `loanAmount -> loan_amount` and `message -> contact_message`.
+- See `.env.local.example` for placeholders. On Vercel, env vars are already set for this project (preview uses the dev form, production uses the prod form).
