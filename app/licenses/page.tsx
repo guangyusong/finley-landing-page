@@ -36,6 +36,9 @@ export default function LicensesPage() {
             <p>
               Contact: <a href="mailto:mortgages@garrison.co" className="text-orange-600 hover:underline">mortgages@garrison.co</a>
             </p>
+            <p>
+              Phone: <a href="tel:+16475582300" className="hover:underline text-slate-600">647 558 2300</a>
+            </p>
             <p className="mt-2">
               Note: FSRA does not endorse or guarantee the products or services offered. All
               approvals are subject to lender underwriting and applicable laws.
@@ -46,4 +49,3 @@ export default function LicensesPage() {
     </div>
   );
 }
-

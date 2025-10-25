@@ -151,6 +151,9 @@ export default function PrivacyPolicyPage() {
               .
             </p>
             <p className="mt-2 text-sm text-slate-500">
+              Phone: <a href="tel:+16475582300" className="hover:underline text-slate-600">647 558 2300</a>
+            </p>
+            <p className="text-sm text-slate-500">
               Brokerage License #13362 • Ontario, Canada
             </p>
           </div>

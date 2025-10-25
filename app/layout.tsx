@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: "Get your mortgage approved in days, not weeks — serving Toronto and the Greater Toronto Area (GTA). Streamlined process, transparent pricing, and personalized support.",
   keywords: ["mortgage", "home loans", "fast approval", "mortgage rates", "home financing", "Toronto", "Ontario", "Canada", "GTA"],
   authors: [{ name: "Garrison Capital" }],
-  metadataBase: new URL('https://garrison.mortgage'),
+  metadataBase: new URL('https://garrisonco.ca'),
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://garrison.mortgage",
+    url: "https://garrisonco.ca",
     title: "Garrison Capital - Fast Mortgage Approvals in Toronto, Canada",
     description: "Get your mortgage approved in days, not weeks — serving Toronto and the GTA. Streamlined process, transparent pricing, and personalized support.",
     siteName: "Garrison Capital",

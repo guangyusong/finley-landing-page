@@ -267,9 +267,9 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
-                  CAD <Counter value={500} />M+
+                  $<Counter value={500} />M+
                 </div>
-                <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Mortgages Funded (CAD)</div>
+                <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Mortgages Funded</div>
                 <div className="text-sm sm:text-base text-slate-500">Helping families achieve their dreams</div>
               </div>
               <div>
@@ -588,6 +588,9 @@ export default function Home() {
             <div className="mt-8 text-white/80 text-sm">
               Free consultation • No commitment • Get answers in 24 hours
             </div>
+            <div className="mt-2 text-white/80 text-sm">
+              Or call <a href="tel:+16475582300" className="underline hover:text-white">647 558 2300</a>
+            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -673,11 +676,11 @@ export default function Home() {
                     required
                   >
                     <option value="">Select amount...</option>
-                    <option value="under-200k">Under $200,000 CAD</option>
-                    <option value="200k-400k">$200,000 - $400,000 CAD</option>
-                    <option value="400k-600k">$400,000 - $600,000 CAD</option>
-                    <option value="600k-800k">$600,000 - $800,000 CAD</option>
-                    <option value="over-800k">Over $800,000 CAD</option>
+                    <option value="under-200k">Under $200,000</option>
+                    <option value="200k-400k">$200,000 - $400,000</option>
+                    <option value="400k-600k">$400,000 - $600,000</option>
+                    <option value="600k-800k">$600,000 - $800,000</option>
+                    <option value="over-800k">Over $800,000</option>
                   </select>
                 </div>
 
