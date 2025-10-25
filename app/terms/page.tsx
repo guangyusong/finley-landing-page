@@ -25,8 +25,8 @@ export default function TermsPage() {
       <section className="py-6 pb-24 px-6">
         <div className="max-w-4xl mx-auto space-y-10 text-slate-700 leading-relaxed">
           <p>
-            These Terms and Conditions ("Terms") govern your access to and use of the website and
-            related services provided by Garrison Capital ("Garrison", "we", "us", or "our"), a
+            These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the website and
+            related services provided by Garrison Capital (&quot;Garrison&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), a
             mortgage brokerage operating in Ontario, Canada. By using our website, you agree to these
             Terms. If you do not agree, please do not use the site.
           </p>

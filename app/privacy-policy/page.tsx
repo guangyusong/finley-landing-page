@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
       <section className="py-6 pb-24 px-6">
         <div className="max-w-4xl mx-auto space-y-10 text-slate-700 leading-relaxed">
           <p>
-            This Privacy Policy explains how Garrison Capital ("Garrison", "we", "us", or "our")
+            This Privacy Policy explains how Garrison Capital (&quot;Garrison&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
             collects, uses, discloses, and safeguards personal information in connection with our
             mortgage brokerage services in Ontario, Canada. We comply with Canada’s Personal
             Information Protection and Electronic Documents Act (PIPEDA) and applicable Ontario
