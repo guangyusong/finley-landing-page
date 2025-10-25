@@ -1,8 +1,73 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
+// Basic in-memory rate limiting (best-effort; per-process)
+const RATE_WINDOW_MS = 60_000; // 1 minute
+const RATE_MAX = 10; // max submissions per IP per window
+const rateMap = new Map<string, { count: number; resetAt: number }>();
+
+function rateLimit(ip: string | undefined) {
+  const key = ip || "unknown";
+  const now = Date.now();
+  const entry = rateMap.get(key);
+  if (!entry || now > entry.resetAt) {
+    rateMap.set(key, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return { ok: true } as const;
+  }
+  entry.count += 1;
+  if (entry.count > RATE_MAX) {
+    return { ok: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) } as const;
+  }
+  return { ok: true } as const;
+}
+
+function allowedHostnames(): Set<string> {
+  const set = new Set<string>();
+  const site = process.env.NEXT_PUBLIC_SITE_URL;
+  if (site) {
+    try { set.add(new URL(site).hostname); } catch {}
+  }
+  const vercel = process.env.VERCEL_URL;
+  if (vercel) {
+    try { set.add(new URL(`https://${vercel}`).hostname); } catch {}
+  }
+  set.add("localhost");
+  set.add("127.0.0.1");
+  return set;
+}
+
+function isOriginAllowed(req: Request) {
+  const allowed = allowedHostnames();
+  const origin = req.headers.get("origin") || undefined;
+  const referer = req.headers.get("referer") || undefined;
+  const candidates = [origin, referer].filter(Boolean) as string[];
+  if (candidates.length === 0) return true; // allow if no headers present (e.g., curl/internal)
+  for (const u of candidates) {
+    try {
+      const h = new URL(u).hostname;
+      if (allowed.has(h)) return true;
+    } catch {}
+  }
+  return false;
+}
+
 export async function POST(req: Request) {
   try {
+    // Origin allowlist
+    if (!isOriginAllowed(req)) {
+      return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
+    }
+
+    // IP rate limiting
+    const ipHeader = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "";
+    const ipAddrEarly = ipHeader.split(",")[0]?.trim() || undefined;
+    const rl = rateLimit(ipAddrEarly);
+    if (!rl.ok) {
+      const headers = new Headers();
+      headers.set("Retry-After", String(rl.retryAfter));
+      return new NextResponse(JSON.stringify({ ok: false, error: "Too many requests" }), { status: 429, headers });
+    }
+
     const contentType = req.headers.get("content-type") || "";
     let data: Record<string, unknown> = {};
     if (contentType.includes("application/json")) {

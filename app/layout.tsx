@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import MotionProvider from "./MotionProvider";
+import { cookies } from "next/headers";
+import ConsentBanner from "./ConsentBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,6 +19,7 @@ export const metadata: Metadata = {
   keywords: ["mortgage", "home loans", "fast approval", "mortgage rates", "home financing", "Toronto", "Ontario", "Canada", "GTA"],
   authors: [{ name: "Garrison Capital" }],
   metadataBase: new URL(siteUrl),
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_CA",
@@ -62,14 +66,60 @@ export default function RootLayout({
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-slate-900 p-2 rounded">
           Skip to content
         </a>
-        <main id="main">{children}</main>
-        {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ? (
+        <main id="main">
+          <MotionProvider>{children}</MotionProvider>
+        </main>
+        {/* LocalBusiness / FinancialService JSON-LD for rich results */}
+        {(() => {
+          const logoUrl = new URL('/garrison-logo-light.png', siteUrl).toString();
+          const imageUrl = new URL('/og-image.webp', siteUrl).toString();
+          const orgJsonLd = {
+            "@context": "https://schema.org",
+            "@type": "FinancialService",
+            "@id": `${siteUrl}/#organization`,
+            name: "Garrison Capital",
+            url: siteUrl,
+            telephone: "+1-647-558-2300",
+            logo: logoUrl,
+            image: imageUrl,
+            areaServed: { "@type": "AdministrativeArea", name: "Ontario" },
+            address: {
+              "@type": "PostalAddress",
+              addressRegion: "ON",
+              addressCountry: "CA",
+            },
+            priceRange: "$$",
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                contactType: "customer support",
+                telephone: "+1-647-558-2300",
+                areaServed: "CA-ON",
+                availableLanguage: ["en"],
+              },
+            ],
+          } as const;
+          return (
+            <Script
+              id="jsonld-localbusiness"
+              type="application/ld+json"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+            />
+          );
+        })()}
+        {(() => {
+          const consent = cookies().get('marketingConsent')?.value;
+          const ok = consent === 'yes' && process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+          return ok ? (
           <Script
             id="hs-script-loader"
             strategy="afterInteractive"
             src={`https://js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.js`}
           />
-        ) : null}
+          ) : null;
+        })()}
+        <ConsentBanner />
       </body>
     </html>
   );

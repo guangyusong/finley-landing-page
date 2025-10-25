@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 function formatMoney(value: number) {
   if (!isFinite(value)) return "$0";
@@ -248,4 +249,3 @@ export default function CalculatorClient() {
     </div>
   );
 }
-import Link from "next/link";
