@@ -77,7 +77,7 @@ export default function Home() {
         <div className="relative h-6 md:h-7 w-auto">
           <Image
             src="/garrison-logo-dark.png"
-            alt="Garrison"
+            alt="Garrison Capital"
             width={120}
             height={28}
             className="h-full w-auto"
@@ -267,9 +267,9 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-br from-orange-600 to-orange-700 bg-clip-text text-transparent mb-3">
-                  $<Counter value={500} />M+
+                  CAD <Counter value={500} />M+
                 </div>
-                <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Mortgages Funded</div>
+                <div className="text-lg sm:text-xl text-slate-900 font-semibold mb-2">Mortgages Funded (CAD)</div>
                 <div className="text-sm sm:text-base text-slate-500">Helping families achieve their dreams</div>
               </div>
               <div>
@@ -496,6 +496,9 @@ export default function Home() {
               </div>
               <p className="text-slate-600 text-base sm:text-lg">on average, without sacrificing quality or care</p>
             </div>
+            <p className="mt-4 text-center text-xs text-slate-500">
+              Timelines and approvals vary by applicant, documentation, and lender. Ontario files shown for illustration; not a guarantee of approval.
+            </p>
           </AnimatedSection>
         </div>
       </section>
@@ -670,11 +673,11 @@ export default function Home() {
                     required
                   >
                     <option value="">Select amount...</option>
-                    <option value="under-200k">Under $200,000</option>
-                    <option value="200k-400k">$200,000 - $400,000</option>
-                    <option value="400k-600k">$400,000 - $600,000</option>
-                    <option value="600k-800k">$600,000 - $800,000</option>
-                    <option value="over-800k">Over $800,000</option>
+                    <option value="under-200k">Under $200,000 CAD</option>
+                    <option value="200k-400k">$200,000 - $400,000 CAD</option>
+                    <option value="400k-600k">$400,000 - $600,000 CAD</option>
+                    <option value="600k-800k">$600,000 - $800,000 CAD</option>
+                    <option value="over-800k">Over $800,000 CAD</option>
                   </select>
                 </div>
 
@@ -700,7 +703,7 @@ export default function Home() {
                 <p className="text-sm text-slate-500 text-center">
                   By submitting this form, you agree to our{' '}
                   <a href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</a> and{' '}
-                  <a href="/terms" className="text-orange-600 hover:underline">Terms of Service</a>
+                  <a href="/terms" className="text-orange-600 hover:underline">Terms and Conditions</a>
                 </p>
               </form>
             </div>
@@ -716,7 +719,7 @@ export default function Home() {
               <div className="relative h-8 w-auto mb-4">
                 <Image
                   src="/garrison-logo-light.png"
-                  alt="Garrison"
+                  alt="Garrison Capital"
                   width={140}
                   height={32}
                   className="h-full w-auto"
@@ -748,8 +751,8 @@ export default function Home() {
               <h4 className="text-white font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="/privacy-policy" className="hover:text-white transition-colors">Privacy policy</a></li>
-                <li><a href="/terms" className="hover:text-white transition-colors">Terms of service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Licenses</a></li>
+                <li><a href="/terms" className="hover:text-white transition-colors">Terms and Conditions</a></li>
+                <li><a href="/licenses" className="hover:text-white transition-colors">Licenses</a></li>
               </ul>
             </div>
           </div>
