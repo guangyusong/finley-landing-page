@@ -578,7 +578,7 @@ export default function Home() {
               <a href="#contact" className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-700 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all inline-block">
                 Start Your Application
               </a>
-              <a href="mailto:hello@garrison.mortgage" className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all inline-block">
+              <a href="mailto:mortgages@garrison.co" className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all inline-block">
                 Talk to an Expert
               </a>
             </div>
@@ -699,8 +699,8 @@ export default function Home() {
 
                 <p className="text-sm text-slate-500 text-center">
                   By submitting this form, you agree to our{' '}
-                  <a href="#" className="text-orange-600 hover:underline">Privacy Policy</a> and{' '}
-                  <a href="#" className="text-orange-600 hover:underline">Terms of Service</a>
+                  <a href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</a> and{' '}
+                  <a href="/terms" className="text-orange-600 hover:underline">Terms of Service</a>
                 </p>
               </form>
             </div>
@@ -747,8 +747,8 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of service</a></li>
+                <li><a href="/privacy-policy" className="hover:text-white transition-colors">Privacy policy</a></li>
+                <li><a href="/terms" className="hover:text-white transition-colors">Terms of service</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Licenses</a></li>
               </ul>
             </div>
