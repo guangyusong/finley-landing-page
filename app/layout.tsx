@@ -8,17 +8,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Garrison - Fast Mortgage Approvals in Days",
-  description: "Get your mortgage approved in days, not weeks. Streamlined process, transparent pricing, and personalized support. Join thousands of happy homeowners.",
-  keywords: ["mortgage", "home loans", "fast approval", "mortgage rates", "home financing"],
+  title: "Garrison - Fast Mortgage Approvals in Toronto, Canada",
+  description: "Get your mortgage approved in days, not weeks — serving Toronto and the Greater Toronto Area (GTA). Streamlined process, transparent pricing, and personalized support.",
+  keywords: ["mortgage", "home loans", "fast approval", "mortgage rates", "home financing", "Toronto", "Ontario", "Canada", "GTA"],
   authors: [{ name: "Garrison" }],
   metadataBase: new URL('https://garrison.mortgage'),
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_CA",
     url: "https://garrison.mortgage",
-    title: "Garrison - Fast Mortgage Approvals in Days",
-    description: "Get your mortgage approved in days, not weeks. Streamlined process, transparent pricing, and personalized support.",
+    title: "Garrison - Fast Mortgage Approvals in Toronto, Canada",
+    description: "Get your mortgage approved in days, not weeks — serving Toronto and the GTA. Streamlined process, transparent pricing, and personalized support.",
     siteName: "Garrison",
     images: [
       {
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Garrison - Fast Mortgage Approvals in Days",
-    description: "Get your mortgage approved in days, not weeks. Streamlined process, transparent pricing, and personalized support.",
+    title: "Garrison - Fast Mortgage Approvals in Toronto, Canada",
+    description: "Get your mortgage approved in days, not weeks — serving Toronto and the GTA. Streamlined process, transparent pricing, and personalized support.",
     images: ["/og-image.webp"],
   },
   robots: {
@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en-CA" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
         {children}
       </body>

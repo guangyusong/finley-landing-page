@@ -533,7 +533,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">Sarah Miller</div>
-                    <div className="text-sm text-slate-500">First-time homebuyer, Portland</div>
+                    <div className="text-sm text-slate-500">First-time homebuyer, Toronto</div>
                   </div>
                 </div>
               </div>
@@ -555,7 +555,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">James Chen</div>
-                    <div className="text-sm text-slate-500">Refinancing, Austin</div>
+                    <div className="text-sm text-slate-500">Refinancing, Mississauga</div>
                   </div>
                 </div>
               </div>
@@ -754,8 +754,8 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-8 text-center text-sm">
-            <p>© 2025 Garrison. NMLS #123456. All rights reserved.</p>
-            <p className="mt-2 text-slate-500">Licensed to do business in all 50 states.</p>
+            <p>© 2025 Garrison. License #13362. All rights reserved.</p>
+            <p className="mt-2 text-slate-500">Licensed to operate in Ontario, Canada.</p>
           </div>
         </div>
       </footer>
