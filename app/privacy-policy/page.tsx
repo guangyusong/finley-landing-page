@@ -145,8 +145,8 @@ export default function PrivacyPolicyPage() {
             <p>
               Questions or requests about this policy can be sent to
               {" "}
-              <a href="mailto:mortgages@garrison.co" className="text-orange-600 hover:underline">
-                mortgages@garrison.co
+              <a href="mailto:mortgages@garrisonco.ca" className="text-orange-600 hover:underline">
+                mortgages@garrisonco.ca
               </a>
               .
             </p>

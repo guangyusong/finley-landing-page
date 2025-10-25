@@ -239,13 +239,13 @@ export default function CalculatorClient() {
               </p>
             </div>
 
-            <a href="#contact" className="inline-block px-6 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-orange-600/25 transition-all">
+            <Link href="/#contact" className="inline-block px-6 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-orange-600/25 transition-all">
               Start Your Application
-            </a>
+            </Link>
           </div>
         </div>
       </section>
     </div>
   );
 }
-
+import Link from "next/link";

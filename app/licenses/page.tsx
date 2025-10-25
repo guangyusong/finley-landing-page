@@ -34,7 +34,7 @@ export default function LicensesPage() {
 
           <div className="text-sm text-slate-500">
             <p>
-              Contact: <a href="mailto:mortgages@garrison.co" className="text-orange-600 hover:underline">mortgages@garrison.co</a>
+              Contact: <a href="mailto:mortgages@garrisonco.ca" className="text-orange-600 hover:underline">mortgages@garrisonco.ca</a>
             </p>
             <p>
               Phone: <a href="tel:+16475582300" className="hover:underline text-slate-600">647 558 2300</a>

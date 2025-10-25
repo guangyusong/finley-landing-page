@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms and Conditions | Garrison Capital (Ontario, Canada)",
@@ -63,7 +64,7 @@ export default function TermsPage() {
             <p>
               Your use of our services is also governed by our
               {" "}
-              <a href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</a>
+              <Link href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</Link>
               , which explains how we collect, use, and protect your personal information in
               compliance with PIPEDA and applicable Ontario rules.
             </p>
@@ -137,8 +138,8 @@ export default function TermsPage() {
             <p>
               Questions about these Terms can be sent to
               {" "}
-              <a href="mailto:mortgages@garrison.co" className="text-orange-600 hover:underline">
-                mortgages@garrison.co
+              <a href="mailto:mortgages@garrisonco.ca" className="text-orange-600 hover:underline">
+                mortgages@garrisonco.ca
               </a>
               .
             </p>

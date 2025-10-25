@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
   const ref = useRef(null);
@@ -63,6 +64,39 @@ export default function Home() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    try {
+      (form.querySelector('[type="submit"]') as HTMLButtonElement | null)?.setAttribute('disabled', 'true');
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        const note = form.querySelector('[data-submit-note]');
+        if (note) {
+          note.textContent = 'Thanks! We\'ll be in touch shortly.';
+        }
+      } else {
+        const note = form.querySelector('[data-submit-note]');
+        if (note) {
+          note.textContent = 'There was a problem sending your request. Please try again.';
+        }
+      }
+    } catch (err) {
+      const note = (e.currentTarget as HTMLElement).querySelector('[data-submit-note]');
+      if (note) {
+        note.textContent = 'There was a problem sending your request. Please try again.';
+      }
+    } finally {
+      (form.querySelector('[type="submit"]') as HTMLButtonElement | null)?.removeAttribute('disabled');
+    }
+  }
+
   return (
     <div className="bg-gradient-to-b from-orange-50/30 via-orange-50/10 to-white text-slate-900 overflow-x-hidden">
       {/* Subtle Background Pattern */}
@@ -98,6 +132,8 @@ export default function Home() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {mobileMenuOpen ? (
@@ -115,6 +151,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
+          id="mobile-menu"
           className="fixed top-16 left-4 right-4 z-40 md:hidden backdrop-blur-xl bg-white/95 border border-slate-200/60 shadow-lg rounded-3xl p-6"
         >
           <div className="flex flex-col gap-4">
@@ -180,9 +217,9 @@ export default function Home() {
                   Start Your Application
                   <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
                 </a>
-                <a href="/calculator" className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all text-center">
+                <Link href="/calculator" className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all text-center">
                   Calculate Payment
-                </a>
+                </Link>
               </div>
 
               {/* Trust Badges */}
@@ -581,7 +618,7 @@ export default function Home() {
               <a href="#contact" className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-orange-700 rounded-full font-bold text-lg sm:text-xl hover:shadow-2xl hover:scale-105 transition-all inline-block">
                 Start Your Application
               </a>
-              <a href="mailto:mortgages@garrison.co" className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all inline-block">
+              <a href="mailto:mortgages@garrisonco.ca" className="px-8 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg sm:text-xl hover:bg-white/10 transition-all inline-block">
                 Talk to an Expert
               </a>
             </div>
@@ -611,7 +648,7 @@ export default function Home() {
 
           <AnimatedSection delay={0.2}>
             <div className="bg-slate-50 rounded-3xl p-8 sm:p-12 border-2 border-slate-200">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleContactSubmit} noValidate>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-semibold text-slate-700 mb-2">
@@ -621,6 +658,7 @@ export default function Home() {
                       type="text"
                       id="firstName"
                       name="firstName"
+                      autoComplete="given-name"
                       className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
                       required
                     />
@@ -633,6 +671,7 @@ export default function Home() {
                       type="text"
                       id="lastName"
                       name="lastName"
+                      autoComplete="family-name"
                       className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
                       required
                     />
@@ -647,6 +686,7 @@ export default function Home() {
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
                     required
                   />
@@ -660,6 +700,8 @@ export default function Home() {
                     type="tel"
                     id="phone"
                     name="phone"
+                    autoComplete="tel"
+                    inputMode="tel"
                     className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-600 focus:outline-none transition-colors"
                     required
                   />
@@ -703,10 +745,10 @@ export default function Home() {
                   Submit Application
                 </button>
 
-                <p className="text-sm text-slate-500 text-center">
+                <p className="text-sm text-slate-500 text-center" aria-live="polite" data-submit-note>
                   By submitting this form, you agree to our{' '}
-                  <a href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</a> and{' '}
-                  <a href="/terms" className="text-orange-600 hover:underline">Terms and Conditions</a>
+                  <Link href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</Link> and{' '}
+                  <Link href="/terms" className="text-orange-600 hover:underline">Terms and Conditions</Link>
                 </p>
               </form>
             </div>
@@ -735,27 +777,22 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">How it works</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="/calculator" className="hover:text-white transition-colors">Calculator</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Resources</a></li>
+                <li><Link href="/#how-it-works" className="hover:text-white transition-colors">How it works</Link></li>
+                <li><Link href="/calculator" className="hover:text-white transition-colors">Calculator</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">About us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Our team</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link href="/#contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="/privacy-policy" className="hover:text-white transition-colors">Privacy policy</a></li>
-                <li><a href="/terms" className="hover:text-white transition-colors">Terms and Conditions</a></li>
-                <li><a href="/licenses" className="hover:text-white transition-colors">Licenses</a></li>
+                <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors">Terms and Conditions</Link></li>
+                <li><Link href="/licenses" className="hover:text-white transition-colors">Licenses</Link></li>
               </ul>
             </div>
           </div>

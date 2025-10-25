@@ -7,16 +7,18 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://garrisonco.ca';
+
 export const metadata: Metadata = {
   title: "Garrison Capital - Fast Mortgage Approvals in Toronto, Canada",
   description: "Get your mortgage approved in days, not weeks — serving Toronto and the Greater Toronto Area (GTA). Streamlined process, transparent pricing, and personalized support.",
   keywords: ["mortgage", "home loans", "fast approval", "mortgage rates", "home financing", "Toronto", "Ontario", "Canada", "GTA"],
   authors: [{ name: "Garrison Capital" }],
-  metadataBase: new URL('https://garrisonco.ca'),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://garrisonco.ca",
+    url: siteUrl,
     title: "Garrison Capital - Fast Mortgage Approvals in Toronto, Canada",
     description: "Get your mortgage approved in days, not weeks — serving Toronto and the GTA. Streamlined process, transparent pricing, and personalized support.",
     siteName: "Garrison Capital",
@@ -56,7 +58,10 @@ export default function RootLayout({
   return (
     <html lang="en-CA" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
-        {children}
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-slate-900 p-2 rounded">
+          Skip to content
+        </a>
+        <main id="main">{children}</main>
       </body>
     </html>
   );
