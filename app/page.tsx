@@ -180,7 +180,7 @@ export default function Home() {
                   Start Your Application
                   <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
                 </a>
-                <a href="#contact" className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all text-center">
+                <a href="/calculator" className="px-8 py-4 bg-white border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-orange-600 hover:shadow-lg transition-all text-center">
                   Calculate Payment
                 </a>
               </div>
@@ -737,7 +737,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">How it works</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Calculator</a></li>
+                <li><a href="/calculator" className="hover:text-white transition-colors">Calculator</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Resources</a></li>
               </ul>
             </div>
